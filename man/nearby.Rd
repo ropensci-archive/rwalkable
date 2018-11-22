@@ -4,7 +4,7 @@
 \alias{nearby}
 \title{Is there stuff nearby?}
 \usage{
-nearby(location, radius = 1500, amenities = NULL)
+nearby(location, radius = 800, amenities = NULL)
 }
 \arguments{
 \item{location}{where to compute walkability}
@@ -17,4 +17,11 @@ is to include all of them}
 }
 \description{
 Given a location, look up features within a walking distance of 'radius' to summarise walkability
+}
+\examples{
+nearby("Onehunga, Auckland, New Zealand")
+nearby("Springvale, Victoria, Australia")
+nearby("Paris, France")
+nearby("Paris, Texas")
+nearby("Onehunga, Auckland, New Zealand", radius=walk_time(10))
 }

@@ -6,6 +6,12 @@
 #'  is to include all of them
 #' @title Is there stuff nearby?
 #' @description Given a location, look up features within a walking distance of 'radius' to summarise walkability
+#' @examples 
+#' nearby("Onehunga, Auckland, New Zealand")
+#' nearby("Springvale, Victoria, Australia")
+#' nearby("Paris, France")
+#' nearby("Paris, Texas")
+#' nearby("Onehunga, Auckland, New Zealand", radius=walk_time(10))
 
 nearby <- function(location, radius=800, amenities=NULL){
   
