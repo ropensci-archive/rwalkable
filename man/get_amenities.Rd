@@ -2,22 +2,21 @@
 % Please edit documentation in R/get_amenities.R
 \name{get_amenities}
 \alias{get_amenities}
-\title{Retrieve amenities for a neighbourhood}
+\title{Retrieve amenities for a neighbourhood/location}
 \usage{
-get_amenities(location, ..., amenities = NULL)
+get_amenities(location, amenities = NULL)
 }
 \arguments{
-\item{location}{A character string or bounding box as passed to \code{\link[osmdata:opq]{osmdata::opq()}}.}
-
-\item{...}{additional arguments to pass to \code{\link[osmdata:opq]{osmdata::opq()}}.}
+\item{location}{The bbox of the location as determined by \code{nearby()}.}
 
 \item{amenities}{a character vector representing amentities to add as
 defined by \href{https://wiki.openstreetmap.org/wiki/Key:amenity}{Open Street Map}.
-If NULL will default to all amenity tags.}
+If NULL will default to all amenity tags. For valid amenity tags use
+\code{osmdata::available_tags("amenity")}}
 }
 \value{
 an sf Simple Features Collection of points
 }
 \description{
-Retrieve amenities for a neighbourhood
+Retrieve amenities for a neighbourhood/location
 }

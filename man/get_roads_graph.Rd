@@ -22,7 +22,9 @@ A walkable road is defined as a road which (1) does not \emph{not have sidewalks
 }
 \examples{
 
+\dontrun{
 # For Melbourne
 
 get_roads_graph("melbourne vic")
+}
 }

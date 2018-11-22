@@ -53,13 +53,12 @@ get_roads <- function(location, ...){
   )
 
   # Check output exists
-
   exists <- nrow(walkables) > 0
   if(!exists){
     stop("Output has 0 features.")
   }
 
-  # Return this SpatialLinesDataFrame object
+  # Return this sf object
   return(walkables)
 
 }
