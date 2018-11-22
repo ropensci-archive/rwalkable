@@ -19,9 +19,14 @@ is to include all of them}
 Given a location, look up features within a walking distance of 'radius' to summarise walkability
 }
 \examples{
+\dontrun{
 nearby("Onehunga, Auckland, New Zealand")
 nearby("Springvale, Victoria, Australia")
 nearby("Paris, France")
 nearby("Paris, Texas")
+nearby("3rd Arrondissement, Paris, France")
 nearby("Onehunga, Auckland, New Zealand", radius=walk_time(10))
+nearby(c(latitude=40.7316, longitude=-73.9863))
+nearby(sf::st_point(c(40.7316,-73.9863)))
+}
 }

@@ -15,6 +15,6 @@ whereis <-function(place, quietly=FALSE){
   if(is.na(bb[1,1]) && !quietly)
     stop(paste("can't find",place,"on OpenStreetMap."))
   
-  return(list(latitude=mean(bb["y",]),
+  return(c(latitude=mean(bb["y",]),
               longitude=mean(bb["x",])))
 }

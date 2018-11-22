@@ -7,29 +7,39 @@
 #' @title Is there stuff nearby?
 #' @description Given a location, look up features within a walking distance of 'radius' to summarise walkability
 #' @examples 
+#' \dontrun{
 #' nearby("Onehunga, Auckland, New Zealand")
 #' nearby("Springvale, Victoria, Australia")
 #' nearby("Paris, France")
 #' nearby("Paris, Texas")
+#' nearby("3rd Arrondissement, Paris, France")
 #' nearby("Onehunga, Auckland, New Zealand", radius=walk_time(10))
+#' nearby(c(latitude=40.7316, longitude=-73.9863))
+#' nearby(sf::st_point(c(40.7316,-73.9863)))
+#' }
 
 nearby <- function(location, radius=800, amenities=NULL){
   
   location_xy <-if(is.character(location)) {
     whereis(location) 
   } else if (inherits(location,"POINT")){
-    location<-as.numeric(location)
+    l<-as.numeric(location)
+    names(l)<-c("latitude","longitude")
+    l
   } else if (inherits(location,"MULTIPOINT")){
-    location<-colMeans(location)
+    l<-colMeans(location)
+    names(l)<-c("latitude","longitude")
+    l
   } else location
     
   delta_lat<-radius_to_latitude(radius)
-  delta_long<-radius_to_longitude(radius, location_xy$latitude)
+  delta_long<-radius_to_longitude(radius, location_xy["latitude"])
   
-  location_bb<-with(location_xy, 
-                    matrix(c(longitude-delta_long, longitude+delta_long,
-                             latitude-delta_lat, latitude+delta_lat),
-                           ncol=2, byrow=TRUE))
+  location_bb<-  matrix(c(location_xy["longitude"]-delta_long, 
+                          location_xy["longitude"]+delta_long,
+                          location_xy["latitude"]-delta_lat, 
+                          location_xy["latitude"]+delta_lat),
+                           ncol=2, byrow=TRUE)
   colnames(location_bb)<-c("min","max")
   rownames(location_bb)<-c("x","y")
   
@@ -53,8 +63,8 @@ nearby <- function(location, radius=800, amenities=NULL){
 #' @export print.nearby
 
 print.nearby<-function(x,...){
-  if (is.list(x$location)) 
-    location<-paste0("(",location$latitude, ",", location$longitude,")")
+  if (is.numeric(x$location)) 
+    location<-paste0("(",x$location["latitude"], ",", x$location["longitude"],")")
   else
     location<-x$location
   area<-pi*x$radius^2/10000

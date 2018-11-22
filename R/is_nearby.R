@@ -1,5 +1,6 @@
 is_nearby<-function(to, from, graph, radius){
-  distances<-dodgr::dodgr_dists(graph, from=c(from$longitude,from$latitude), 
+  names(from)<-c("x","y")
+  distances<-dodgr::dodgr_dists(graph, from=from, 
                                 to=as.matrix(to), wt_profile="foot")
   distances < radius
 }

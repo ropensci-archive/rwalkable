@@ -39,6 +39,8 @@ get_roads_graph <- function(location){
   osm_lines <- roads_gph$osm_lines
   osm_lines <- tryCatch(subset(osm_lines, highway %in% valid), error = function(e) osm_lines)
 
+  if(is.null(osm_lines)) stop("OpenStreetMap doesn't show any roads at the centre of that location")
+  
   # Return
   dodgr::weight_streetnet(osm_lines,
                           wt_profile = "foot")
