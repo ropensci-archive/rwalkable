@@ -37,8 +37,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   rval
 }
 
-#' @method print nearby
-#' @S3method print nearby
+#' @export print.nearby
 
 print.nearby<-function(x,...){
   if (is.list(x$location)) 
