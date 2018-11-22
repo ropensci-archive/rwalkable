@@ -29,7 +29,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   connectivity <- get_graph_metrics(road_graph)
   
   ## we know how to do this now: 
-  ##   the amenities are snapped to the graph
+  ##   the amenities are snapped to the graph before the paths are computed
   nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph)]
   
   pop_density<- get_population_density(location_xy) ## NA if not available
