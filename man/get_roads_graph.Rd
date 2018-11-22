@@ -2,23 +2,18 @@
 % Please edit documentation in R/get_roads_graph.R
 \name{get_roads_graph}
 \alias{get_roads_graph}
-\title{Get the igraph object for a road network}
+\title{Get the sf object for a road network}
 \usage{
-get_roads_graph(location, ...)
+get_roads_graph(location)
 }
 \arguments{
 \item{location}{A character string specifying the location of interest (e.g. "Melbourne Vic") or a matrix-like bounding box.}
-
-\item{...}{Extra arguments to the function \code{opq}.}
 }
 \value{
-An object of class igraph
+An object of class sf
 }
 \description{
-This function takes a location and returns a graph object which contains the walkable roads in and around that location.
-}
-\details{
-A walkable road is defined as a road which (1) does not \emph{not have sidewalks} and (2) is \emph{not listed as a motorway or a motorway link} in OpenStreetMaps.
+This function takes a location and returns an \code{sf} object which contains the walkable roads in and around that location.
 }
 \examples{
 
