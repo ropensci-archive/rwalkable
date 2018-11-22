@@ -11,7 +11,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   location_xy <-if(is.character(location)) whereis(location) else location
   delta_lat<-radius_to_latitude(radius)
-  delta_long<-radius_to_longitude(radius, location$latitude)
+  delta_long<-radius_to_longitude(radius, location_xy$latitude)
   
   location_bb<-with(location_xy, 
                     matrix(c(longitude-delta_long, longitude+delta_long,
@@ -26,9 +26,10 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   road_distances <- get_shortest_paths(road_graph)
   
-  connectivity <- get_cool_graph_metrics(road_graph)
+  connectivity <- get_graph_metrics(road_graph)
   
-  ## we don't know how to do this yet
+  ## we know how to do this now: 
+  ##   the amenities are snapped to the graph before the paths are computed
   nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph)]
   
   pop_density<- get_population_density(location_xy) ## NA if not available
