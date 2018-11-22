@@ -17,8 +17,15 @@
 #' }
 get_roads_graph <- function(location, ...){
 
+  # Check input
+  if(is.character(location)){
+    location <- getbb(location)
+  }
+
   # Use dodgr
-  roads_gph <- dodgr_streetnet(location, ...)
+  roads_gph <- osmdata::opq(location) %>% osmdata::add_osm_feature(key = "highway") %>%
+    osmdata::osmdata_sf(quiet = quiet) %>% osmdata::osm_poly2line() %>%
+    extract2("osm_lines")
 
   # Return
   return(roads_gph)
