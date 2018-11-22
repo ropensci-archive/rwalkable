@@ -5,19 +5,33 @@ rwalkable
 
 The goal of rwalkable is to look up and summarise some information about the walkability of a neighbourhood. We look at two components of walkability:
 
--   How many places are there within walking distance that you might want to go to?
--   Is there a reasonably dense network of roads or paths to walk on?
+-   how many places are there within walking distance that you might want to go to (per hectare)?
+-   is there a reasonably dense network of roads or paths to walk on (number of road segments connections minus number of intersections, per hectare)
 
 We use data from OpenStreetMap for both components, via the `osmdata` package: it provides both a road network and a list of locations ('amenities') that someone has thought worth adding to the map. Most of the heavy lifting is done by the `dodgr` package.
 
-Installation
-============
+Example
+-------
 
-Install this package by running `devtools::install_github("sa-lee/rwalkable)`. 
+The location can be specified as a geographic area that OpenStreetMap knows about, or as a two-element vector of latitude and longitude
 
-Main functions
-==============
+``` r
+library(rwalkable)
+nearby("Paris, France")
+#> Within  800  m of Paris, France 
+#>    11.1 points of interest per hectare
+#>    2.2 road branches per hectare
+nearby("Paris, Texas")
+#> Within  800  m of Paris, Texas 
+#>    0 points of interest per hectare
+#>    0.4 road branches per hectare
+```
 
-The main function in `rwalkable` is the function `nearby(location, radius, amenities = NULL)`. The output is of class `nearby`. Objects of this class have a print, summary, and plot method. The plot method displays an interactive leaflet map of all amenities within a specified walking distance of a location when called.
+More detail is better:
 
-
+``` r
+ nearby("3rd Arrondissement, Paris, France")
+#> Within  800  m of 3rd Arrondissement, Paris, France 
+#>    9.9 points of interest per hectare
+#>    2.2 road branches per hectare
+```

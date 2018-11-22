@@ -70,7 +70,7 @@ print.nearby<-function(x,...){
   area<-pi*x$radius^2/10000
   cat("Within ", x$radius," m of", x$location,"\n")
   cat("  ", round(nrow(x$amenities)/area,1),"points of interest per hectare\n")
-  cat("  ", round(x$connectivity/area,1),"intersections per hectare\n")
+  cat("  ", round(x$connectivity/area,1),"road branches per hectare\n")
   invisible(x)
 }
 
