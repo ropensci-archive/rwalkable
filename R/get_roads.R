@@ -2,11 +2,11 @@
 #'
 #' @description
 #'
-#' This function takes a location specified by the user and returns a \code{SpatialLinesDataFrame} object which contains all walkable roads in and around the location.
+#' This function takes a location specified by the user and returns a \code{sf} object which contains all walkable roads in and around the location.
 #'
 #' @param location A character string specifying the location of interest (e.g. "Melbourne Vic") or a matrix-like bounding box.
 #' @param ... Extra arguments to the function \code{opq}.
-#' @return An object of class SpatialLinesDataFrame
+#' @return An object of class sf
 #'
 #' @details
 #'
@@ -14,9 +14,11 @@
 #'
 #' @examples
 #'
+#' \dontrun{
 #' # For Melbourne, Victoria, Australia
 #'
 #' melbourne <- get_roads("melbourne vic")
+#' }
 get_roads <- function(location, ...){
 
   # Construct query
@@ -30,7 +32,7 @@ get_roads <- function(location, ...){
   }
 
   # Get data from query
-  the_data <- osmdata_sp(query)$osm_lines
+  the_data <- osmdata_sf(query)$osm_lines
 
   # Cut out those lines with no sidewalks
   side_walk <- tryCatch(
@@ -52,7 +54,7 @@ get_roads <- function(location, ...){
 
   # Check output exists
 
-  exists <- nrow(walkables@data) > 0
+  exists <- nrow(walkables) > 0
   if(!exists){
     stop("Output has 0 features.")
   }
