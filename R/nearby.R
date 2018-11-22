@@ -8,9 +8,9 @@
 
 nearby <- function(location, radius=1500, amenities=NULL){
   
-  location <-standardise_location(location)
-  delta_lat<-radius_to_latitude(radius)
-  delta_long<-radius_to_longitude(radius, location$latitude)
+  location <-whereis(location)
+  delta_lat<-2*radius_to_latitude(radius)
+  delta_long<-2*radius_to_longitude(radius, location$latitude)
   
   amenities <- get_amenities(location, delta_lat, delta_long, amenities)
   
@@ -18,9 +18,16 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   road_distances <- get_shortest_paths(road_graph)
   
-  ## we don't know how to do this
-  nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph),]
+  connectivity <- get_cool_graph_metrics(road_graph)
   
-  rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities)
+  ## we don't know how to do this yet
+  nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph)]
+  
+  pop_density<- get_population_density(location) ## NA if not available
+  
+  rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities, 
+               person_density=pop_density$persons, dwelling_density=pop_density$dwellings, 
+               connectivity=connectivity)
+  class(rval)<-"nearby"
   rval
 }
