@@ -12,17 +12,19 @@ get_roads(location, ...)
 \item{...}{Extra arguments to the function \code{opq}.}
 }
 \value{
-An object of class SpatialLinesDataFrame
+An object of class sf
 }
 \description{
-This function takes a location specified by the user and returns a \code{SpatialLinesDataFrame} object which contains all walkable roads in and around the location.
+This function takes a location specified by the user and returns a \code{sf} object which contains all walkable roads in and around the location.
 }
 \details{
 A walkable road is defined as a road which (1) does not \emph{not have sidewalks} and (2) is \emph{not listed as a motorway or a motorway link} in OpenStreetMaps.
 }
 \examples{
 
+\dontrun{
 # For Melbourne, Victoria, Australia
 
 melbourne <- get_roads("melbourne vic")
+}
 }
