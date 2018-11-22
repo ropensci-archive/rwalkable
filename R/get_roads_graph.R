@@ -21,13 +21,23 @@ get_roads_graph <- function(location){
     location <- getbb(location)
   }
 
+  # Get list of valid weight profiles for FOOT TRAVEL
+  valid <- subset(dodgr::weighting_profiles, name == "foot")$way
+
   # Use dodgr
-  roads_gph <- osmdata::opq(location) %>% osmdata::add_osm_feature(key = "highway") %>%
-    osmdata::osmdata_sf(quiet = TRUE) %>% osmdata::osm_poly2line()
+  roads_gph <- tryCatch(
+    osmdata::opq(location) %>%
+      osmdata::add_osm_feature(key = "highway") %>%
+      osmdata::osmdata_sf(quiet = TRUE) %>%
+      osmdata::osm_poly2line(),
+    error = function(e){
+      stop("Internal error. Please check location supplied.")
+    }
+  )
 
   # Remove highways
   osm_lines <- roads_gph$osm_lines
-  osm_lines <- tryCatch(subset(osm_lines, highway != "raceway"), error = function(e) osm_lines)
+  osm_lines <- tryCatch(subset(osm_lines, highway %in% valid), error = function(e) osm_lines)
 
   # Return
   dodgr::weight_streetnet(osm_lines,
