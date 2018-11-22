@@ -22,8 +22,12 @@ get_roads_graph <- function(location, ...){
   # Get the sp object for the roads in the location
   roads_shp <- get_roads(location, ...)
 
+  # Compute length of each edge
+  roads_shp@data$elength <- gLength(roads_shp, byid = TRUE)
+
   # Coerce to graph object
-  roads_gph <- readshpnw(roads_shp, longlat = TRUE)
+  roads_gph <- readshpnw(roads_shp, longlat = TRUE, ELComputed = FALSE)
+  roads_gph <- nel2igraph(roads_gph[[2]], roads_gph[[3]], eadf = roads_gph[[5]], Directed = FALSE)
 
   # Return
   return(roads_gph)
