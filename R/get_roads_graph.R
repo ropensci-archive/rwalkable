@@ -25,8 +25,12 @@ get_roads_graph <- function(location){
   roads_gph <- osmdata::opq(location) %>% osmdata::add_osm_feature(key = "highway") %>%
     osmdata::osmdata_sf(quiet = TRUE) %>% osmdata::osm_poly2line()
 
+  # Remove highways
+  osm_lines <- roads_gph$osm_lines
+  osm_lines <- tryCatch(subset(osm_lines, highway != "raceway"), error = function(e) osm_lines)
+
   # Return
-  dodgr::weight_streetnet(roads_gph$osm_lines,
+  dodgr::weight_streetnet(osm_lines,
                           wt_profile = "foot")
 
 }
