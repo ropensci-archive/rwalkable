@@ -2,8 +2,16 @@ Package: rwalkable
 Title: Walkability Scores
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Stuart",
+           family = "Lee",
+           role = c("aut", "cre"),
+           email = "first.last@example.com")
+     person(given = "Thomas",
+           family = "Lumley",
+           role = c("aut", "cre"),
+           email = "first.last@example.com")
+    person(given = "Alan",
+           family = "Pearse",
            role = c("aut", "cre"),
            email = "first.last@example.com")
 Description: Estimates walkability using data from OpenStreetMap and other free sources
