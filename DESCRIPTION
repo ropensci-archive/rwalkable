@@ -23,7 +23,8 @@ RoxygenNote: 6.1.1
 Imports: 
     osmdata,
     magrittr,
-    dodgr
+    dodgr,
+    leaflet
 Suggests: 
     knitr,
     rmarkdown
