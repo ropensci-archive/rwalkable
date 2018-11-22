@@ -24,15 +24,13 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   road_graph<- get_road_graph(location_bb)
   
-  road_distances <- get_shortest_paths(road_graph)
   
-  connectivity <- get_graph_metrics(road_graph)
   
   ## we know how to do this now: 
   ##   the amenities are snapped to the graph before the paths are computed
-  nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph)]
+  nearby_amenities <- get_nearby(amenities, road_graph)
   
-  pop_density<- get_population_density(location_xy) ## NA if not available
+  connectivity <- get_graph_metrics(road_graph)
   
   rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities, 
                person_density=pop_density$persons, dwelling_density=pop_density$dwellings, 
