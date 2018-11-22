@@ -27,12 +27,21 @@ get_amenities <- function(location, amenities = NULL) {
   
   points <- osmdata_sf(query)$osm_points
   
+  if (nrow(points) == 0) {
+    return(data.frame(osm_id  = character(0),
+                      type = character(0),
+                      x = numeric(0),
+                      y = numeric(0))
+    )
+  }
+  
   points <- points[!is.na(points$amenity), ]
   
   pts <- do.call("rbind", points$geometry)
   colnames(pts) <- c("x", "y")
   data.frame(osm_id = points$osm_id, 
              type = points$amenity, 
-             pts)
+             pts,
+             stringsAsFactors = FALSE)
   
 }
