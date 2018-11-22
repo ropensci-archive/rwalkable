@@ -24,10 +24,9 @@ get_roads_graph <- function(location, ...){
 
   # Use dodgr
   roads_gph <- osmdata::opq(location) %>% osmdata::add_osm_feature(key = "highway") %>%
-    osmdata::osmdata_sf(quiet = quiet) %>% osmdata::osm_poly2line() %>%
-    extract2("osm_lines")
+    osmdata::osmdata_sf(quiet = TRUE) %>% osmdata::osm_poly2line()
 
   # Return
-  return(roads_gph)
+  return(roads_gph$osm_lines)
 
 }
