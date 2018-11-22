@@ -24,3 +24,10 @@ The plot method produces a map of nearby amenities, with
 a convex hull over the amenities' longitude and latitude. There is
 a dropdown menu on the top right, to filter by by an amenity type.
 }
+\examples{
+\dontrun{
+plot(nearby("Carlton North, Victoria")) 
+plot(nearby("Carlton North, Victoria", radius = walk_time(15))) 
+}
+
+}

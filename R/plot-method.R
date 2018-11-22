@@ -13,6 +13,12 @@
 #' 
 #' @return a Leaflet map widget 
 #' 
+#' @examples
+#' \dontrun{
+#' plot(nearby("Carlton North, Victoria")) 
+#' plot(nearby("Carlton North, Victoria", radius = walk_time(15))) 
+#' }
+#' 
 #' @import leaflet
 #' @export
 plot.nearby <- function(x, y, ...) {
@@ -20,7 +26,8 @@ plot.nearby <- function(x, y, ...) {
     stop("Not valid for plot.nearby...")
   }
   
-  hpts <- grDevices::chull(x$amenities[, c("x", "y")])
+  amenities <- na.omit(x$amenities)
+  hpts <- grDevices::chull(amenities[, c("x", "y")])
   
   leaflet() %>% 
     addTiles() %>% 
@@ -28,17 +35,17 @@ plot.nearby <- function(x, y, ...) {
               lat1 = x$bounding_box[2,1],
               lng2 = x$bounding_box[1,2],
               lat2 = x$bounding_box[2,2]) %>% 
-    addCircles(lng = x$amenities[["x"]],
-               lat = x$amenities[["y"]],
-               group = x$amenities[["type"]],
+    addCircles(lng = amenities[["x"]],
+               lat = amenities[["y"]],
+               group = amenities[["type"]],
                radius = 0.2,
                opacity = 0.5,
                color = "black"
                
     ) %>% 
-    addPolygons(lng = x$amenities[hpts, "x"],
-                lat = x$amenities[hpts, "y"]
+    addPolygons(lng = amenities[hpts, "x"],
+                lat = amenities[hpts, "y"]
                 ) %>% 
-    addLayersControl(overlayGroups = unique(x$amenities[["type"]]))
+    addLayersControl(overlayGroups = unique(amenities[["type"]]))
   
 }
