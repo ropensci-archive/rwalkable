@@ -28,3 +28,8 @@ library(rwalkable)
 nearby("Paris, France")
 nearby("Paris, Texas")
 ```
+
+More detail is better:
+```{r}
+ nearby("3rd Arrondissement, Paris, France")
+```
