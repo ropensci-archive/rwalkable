@@ -23,7 +23,7 @@ get_roads_graph <- function(location, ...){
   roads_shp <- get_roads(location, ...)
 
   # Coerce to graph object
-  roads_gph <- readshpnw(roads_shp)
+  roads_gph <- readshpnw(roads_shp, longlat = TRUE)
 
   # Return
   return(roads_gph)
