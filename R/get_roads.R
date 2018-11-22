@@ -8,6 +8,10 @@
 #' @param ... Extra arguments to the function \code{opq}.
 #' @return An object of class SpatialLinesDataFrame
 #'
+#' @details
+#'
+#' A walkable road is defined as a road which (1) does not *not have sidewalks* and (2) is *not listed as a motorway or a motorway link* in OpenStreetMaps.
+#'
 #' @examples
 #'
 #' # For Melbourne, Victoria, Australia
