@@ -14,6 +14,13 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   amenities <- get_amenities(location, delta_lat, delta_long, amenities)
   
-  road_graph<- get_road_graph(location, radius)
+  road_graph<- get_road_graph(bounding_box)
   
+  road_distances <- get_shortest_paths(road_graph)
+  
+  ## we don't know how to do this
+  nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph),]
+  
+  rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities)
+  rval
 }
