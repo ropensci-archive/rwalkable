@@ -10,3 +10,8 @@ Description: Estimates walkability using data from OpenStreetMap and other free 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.0
+Imports: 
+    osmdata,
+    magrittr
