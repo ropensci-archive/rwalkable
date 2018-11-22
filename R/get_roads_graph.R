@@ -1,12 +1,11 @@
-#' Get the dodgr object for a road network
+#' Get the sf object for a road network
 #'
 #' @description
 #'
-#' This function takes a location and returns a graph object which contains the walkable roads in and around that location.
+#' This function takes a location and returns an \code{sf} object which contains the walkable roads in and around that location.
 #'
 #' @param location A character string specifying the location of interest (e.g. "Melbourne Vic") or a matrix-like bounding box.
-#' @param ... Extra arguments to the function \code{dodgr_streetnet}.
-#' @return An object of class igraph
+#' @return An object of class sf
 #'
 #' @examples
 #'
@@ -15,7 +14,7 @@
 #'
 #' get_roads_graph("melbourne vic")
 #' }
-get_roads_graph <- function(location, ...){
+get_roads_graph <- function(location){
 
   # Check input
   if(is.character(location)){
