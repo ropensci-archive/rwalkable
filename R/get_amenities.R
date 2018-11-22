@@ -10,7 +10,7 @@
 #' 
 #' @return an sf Simple Features Collection of points
 #'         
-#' @importFrom osmdata opq add_osm_feature
+#' @importFrom osmdata opq add_osm_feature osmdata_sf
 get_amenities <- function(location, amenities = NULL) {
   
   query <- opq(location)
@@ -27,11 +27,10 @@ get_amenities <- function(location, amenities = NULL) {
   
   points <- osmdata_sf(query)$osm_points
   
-  out <- data.frame(osm_id = points$osm_id, 
-                    type = points$amenity, 
-                    do.call("rbind", points$geometry))
-  colnames(out)[3:4] <- c("x", "y")
-  
-  out
+  pts <- do.call("rbind", points$geometry)
+  colnames(pts) <- c("x", "y")
+  data.frame(osm_id = points$osm_id, 
+             type = points$amenity, 
+             pts)
   
 }

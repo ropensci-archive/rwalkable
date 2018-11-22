@@ -3,6 +3,8 @@
 export("%>%")
 export(nearby)
 export(whereis)
+importFrom(dodgr,dodgr_streetnet)
 importFrom(magrittr,"%>%")
 importFrom(osmdata,add_osm_feature)
 importFrom(osmdata,opq)
+importFrom(osmdata,osmdata_sf)
