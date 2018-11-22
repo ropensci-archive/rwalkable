@@ -1,20 +1,19 @@
-#' Retrieve amenities for a neighbourhood
+#' Retrieve amenities for a neighbourhood/location
 #' 
 #' 
-#' @param location A character string or bounding box as passed to [osmdata::opq()].
-#' 
-#' @param ... additional arguments to pass to [osmdata::opq()].
+#' @param location The bbox of the location as determined by `nearby()`.
 #' 
 #' @param amenities a character vector representing amentities to add as
 #' defined by [Open Street Map](https://wiki.openstreetmap.org/wiki/Key:amenity). 
-#' If NULL will default to all amenity tags. 
+#' If NULL will default to all amenity tags. For valid amenity tags use
+#' `osmdata::available_tags("amenity")`
 #' 
 #' @return an sf Simple Features Collection of points
 #'         
 #' @importFrom osmdata opq add_osm_feature
-get_amenities <- function(location, ..., amenities = NULL) {
+get_amenities <- function(location, amenities = NULL) {
   
-  query <- opq(location, ...)
+  query <- opq(location)
   
   if (is.null(amenities)) {
     query <- query %>% 
