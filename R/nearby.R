@@ -31,8 +31,23 @@ nearby <- function(location, radius=1500, amenities=NULL){
   connectivity <- get_graph_metrics(road_graph)
   
   rval<- list( location=location, bounding_box=location_bb, call=sys.call(), 
-               amenities=nearby_amenities, 
+               amenities=nearby_amenities, radius=radius,
                connectivity=connectivity)
   class(rval)<-"nearby"
   rval
 }
+
+#' @export print.nearby
+
+print.nearby<-function(x,...){
+  if (is.list(x$location)) 
+    location<-paste0("(",location$latitude, ",", location$longitude,")")
+  else
+    location<-x$location
+  area<-pi*x$radius^2/10000
+  cat("Within ", x$radius," m of", x$location,"\n")
+  cat("  ", round(nrow(x$amenities)/area,1),"points of interest per hectare\n")
+  cat("  ", round(x$connectivity/area,1),"intersections per hectare\n")
+  invisible(x)
+}
+

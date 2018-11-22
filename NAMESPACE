@@ -3,6 +3,7 @@
 S3method(plot,nearby)
 export("%>%")
 export(nearby)
+export(print.nearby)
 export(walk_time)
 export(whereis)
 import(leaflet)

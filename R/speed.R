@@ -1,7 +1,8 @@
 #' @export
+#' @title Convert time to distance
 #' @param minutes time spent walking
 #' @param speed how fast you walk, either "slow", "medium", "fast" or a numeric value in metres per second
-#' @usage walk_time(minutes, speed=c("medium", slow","fast"))
+#' @usage walk_time(minutes, speed=c("medium", "slow","fast"))
 #' @description The speeds are 0.8 m/s for 'slow', 1.4 m/s for 'medium' and 2.5m/s for 'fast'
 
 walk_time<-function(minutes, speed=c("medium", "slow","fast")){
