@@ -4,6 +4,6 @@
 
 get_graph_metrics<-function(graph){
   ## We're going to compact the dodgr graph and then count the vertices.
-  graph<-dodgr::dodgr_compact_graph(graph)$graph
+  graph<-dodgr::dodgr_contract_graph(graph)$graph
   nrow(graph)-nrow(dodgr::dodgr_vertices(graph))
 }
