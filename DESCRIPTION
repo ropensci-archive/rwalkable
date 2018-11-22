@@ -14,5 +14,4 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
 Imports: 
     osmdata,
-    magrittr,
-    rgeos
+    magrittr
