@@ -18,15 +18,13 @@ The location can be specified as a geographic area that OpenStreetMap knows abou
 ``` r
 library(rwalkable)
 nearby("Paris, France")
-#> Warning in strptime(x, fmt, tz = "GMT"): unknown timezone 'zone/tz/2018e.
-#> 1.0/zoneinfo/Australia/Melbourne'
 #> Within  800  m of Paris, France 
 #>    11.1 points of interest per hectare
-#>    2.2 intersections per hectare
+#>    2.2 road branches per hectare
 nearby("Paris, Texas")
 #> Within  800  m of Paris, Texas 
 #>    0 points of interest per hectare
-#>    0.4 intersections per hectare
+#>    0.4 road branches per hectare
 ```
 
 More detail is better:
@@ -35,5 +33,5 @@ More detail is better:
  nearby("3rd Arrondissement, Paris, France")
 #> Within  800  m of 3rd Arrondissement, Paris, France 
 #>    9.9 points of interest per hectare
-#>    2.2 intersections per hectare
+#>    2.2 road branches per hectare
 ```
