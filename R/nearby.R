@@ -24,12 +24,14 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   road_graph <- get_roads_graph(location_bb)
   
-  nearby_amenities <- amenities[is_nearby(to=amenities, from=location_xy, road_graph, radius)]
+  nearby_amenities <- amenities[is_nearby(to=amenities[,c("x","y")], 
+                                          from=location_xy, 
+                                          road_graph, radius),]
   
   connectivity <- get_graph_metrics(road_graph)
   
-  rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities, 
-               person_density=pop_density$persons, dwelling_density=pop_density$dwellings, 
+  rval<- list( location=location, bounding_box=location_bb, call=sys.call(), 
+               amenities=nearby_amenities, 
                connectivity=connectivity)
   class(rval)<-"nearby"
   rval
