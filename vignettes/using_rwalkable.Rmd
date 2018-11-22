@@ -18,29 +18,66 @@ knitr::opts_chunk$set(
 
 ## rwalkable
 
-We have legs for walking. This is a true fact. Walking for long distances can be painful. This is also a true fact.
+We have legs for walking. This is a true fact. Walking for long distances can 
+be painful. This is also a true fact. This package `rwalkable` eases the pain
+by exploring the walkability of neighbourhoods.
 
-## Styles
+We make use of `osmdata` and `dodgr` packages to estimate walkability metrics
+such as points of interest per hectare. 
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+## Finding amenities that are `nearby()`
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
+Walkable neighbourhoods have lots of points of interest (amenities) 
+that are within some walkable distance.  
 
-## Figures
+Let's look at points of interest nearby Paris, France and compare them
+to Paris, Texas, USA
+```{r}
+paris <- nearby("Paris, France")
+paris
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+the_other_paris <- nearby("Paris, Texas, USA")
+the_other_paris
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+The location can also defined by a vector of longitidue and latitude 
+representing the centre of a neighbourhood.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+By default, we consider an distance walkable if it's within 800m radius
+of the location. 
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+We can modify this with the radius argument, which takes
+a walking distance in metres,
+
+```{r}
+nearby("Paris, France", radius = 2000)
+```
+
+or we can estimate all points of interest for a given walking time in minutes
+
+```{r}
+nearby("Paris, France", radius = walk_time(15))
+```
+
+By default all amenities are to be points of interest, this can modified
+with the amenities argument. Valid amenities can be found on 
+[OpenStreetMap](https://wiki.openstreetmap.org/wiki/Key:amenity)
+
+```{r}
+nearby("Paris, France", amenities = "cafe")
+```
+
+We can also make an interactive map of the neighbourhood with the 
+amenities using leaflet. There's a dropdown menu on the top right hand 
+side of the map to filter amenties that are not interesting out.
+
+Here's a walkable neighbourhood
+```{r}
+plot(paris)
+```
+
+And a not so walkable neighbourhood
+
+```{r}
+plot(the_other_paris)
+```
