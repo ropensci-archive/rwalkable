@@ -24,11 +24,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   road_graph<- get_road_graph(location_bb)
   
-  
-  
-  ## we know how to do this now: 
-  ##   the amenities are snapped to the graph before the paths are computed
-  nearby_amenities <- get_nearby(amenities, road_graph)
+  nearby_amenities <- amenities[is_nearby(to=amenities, from=location_xy, road_graph, radius)]
   
   connectivity <- get_graph_metrics(road_graph)
   
