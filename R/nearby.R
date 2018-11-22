@@ -46,7 +46,7 @@ print.nearby<-function(x,...){
   else
     location<-x$location
   area<-pi*radius^2/10000
-  cat("Within ", x$radius," m of" x$location,"\n")
+  cat("Within ", x$radius," m of", x$location,"\n")
   cat("  ", round(nrow(x$amenities)/area,1),"points of interest per hectare\n")
   cat("  ", round(nrow(x$connectivity)/area,1),"intersection per hectare\n")
   invisible(x)
