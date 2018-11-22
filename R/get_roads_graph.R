@@ -5,14 +5,14 @@
 #' This function takes a location and returns an \code{sf} object which contains the walkable roads in and around that location.
 #'
 #' @param location A character string specifying the location of interest (e.g. "Melbourne Vic") or a matrix-like bounding box.
-#' @return An object of class sf
+#' @return An object of class data.frame/dodgr_streetnet
 #'
 #' @examples
 #'
 #' \dontrun{
-#' # For Melbourne
+#' # For Moorooka, Brisbane, QLD
 #'
-#' get_roads_graph("melbourne vic")
+#' get_roads_graph("moorooka, brisbane, qld")
 #' }
 get_roads_graph <- function(location){
 
