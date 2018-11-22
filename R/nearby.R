@@ -7,7 +7,7 @@
 #' @title Is there stuff nearby?
 #' @description Given a location, look up features within a walking distance of 'radius' to summarise walkability
 
-nearby <- function(location, radius=1500, amenities=NULL){
+nearby <- function(location, radius=800, amenities=NULL){
   
   location_xy <-if(is.character(location)) {
     whereis(location) 
