@@ -4,17 +4,25 @@
 #' @param amenities character vector of amenities to include
 #'  (or with minus sign exclude) from calculation. The default
 #'  is to include all of them
-#' @title 
+#' @title Is there stuff nearby?
+#' @description Given a location, look up features within a walking distance of 'radius' to summarise walkability
 
 nearby <- function(location, radius=1500, amenities=NULL){
   
-  location <-whereis(location)
-  delta_lat<-2*radius_to_latitude(radius)
-  delta_long<-2*radius_to_longitude(radius, location$latitude)
+  location_xy <-if(is.character(location)) whereis(location) else location
+  delta_lat<-radius_to_latitude(radius)
+  delta_long<-radius_to_longitude(radius, location$latitude)
   
-  amenities <- get_amenities(location, delta_lat, delta_long, amenities)
+  location_bb<-with(location_xy, 
+                    matrix(c(longitude-delta_long, longitude+delta_long,
+                             latitude-delta_lat, latitude+delta_lat),
+                           ncol=2, byrow=TRUE))
+  colnames(location_bb)<-c("min","max")
+  rownames(location_bb)<-c("x","y")
   
-  road_graph<- get_road_graph(bounding_box)
+  amenities <- get_amenities(location_bb, amenities)
+  
+  road_graph<- get_road_graph(location_bb)
   
   road_distances <- get_shortest_paths(road_graph)
   
@@ -23,7 +31,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   ## we don't know how to do this yet
   nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph)]
   
-  pop_density<- get_population_density(location) ## NA if not available
+  pop_density<- get_population_density(location_xy) ## NA if not available
   
   rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities, 
                person_density=pop_density$persons, dwelling_density=pop_density$dwellings, 
