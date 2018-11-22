@@ -9,7 +9,14 @@
 
 nearby <- function(location, radius=1500, amenities=NULL){
   
-  location_xy <-if(is.character(location)) whereis(location) else location
+  location_xy <-if(is.character(location)) {
+    whereis(location) 
+  } else if (inherits(location,"POINT")){
+    location<-as.numeric(location)
+  } else if (inherits(location,"MULTIPOINT")){
+    location<-colMeans(location)
+  } else location
+    
   delta_lat<-radius_to_latitude(radius)
   delta_long<-radius_to_longitude(radius, location_xy$latitude)
   
