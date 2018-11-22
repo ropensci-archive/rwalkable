@@ -24,3 +24,7 @@ Imports:
     osmdata,
     magrittr,
     dodgr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
