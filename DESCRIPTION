@@ -1,13 +1,13 @@
 Package: rwalkable
-Title: What the Package Does (One Line, Title Case)
+Title: Walkability Scores
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
            family = "Last",
            role = c("aut", "cre"),
            email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+Description: Estimates walkability using data from OpenStreetMap and other free sources
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
