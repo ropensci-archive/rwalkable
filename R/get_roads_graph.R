@@ -14,9 +14,11 @@
 #'
 #' @examples
 #'
+#' \dontrun{
 #' # For Melbourne
 #'
 #' get_roads_graph("melbourne vic")
+#' }
 get_roads_graph <- function(location, ...){
 
   # Get the sp object for the roads in the location
