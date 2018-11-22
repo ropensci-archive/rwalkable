@@ -4,11 +4,12 @@
 #' @param amenities character vector of amenities to include
 #'  (or with minus sign exclude) from calculation. The default
 #'  is to include all of them
-#' @title 
+#' @title Is there stuff nearby?
+#' @description Given a location, look up features within a walking distance of 'radius' to summarise walkability
 
 nearby <- function(location, radius=1500, amenities=NULL){
   
-  location_xy <-whereis(location)
+  location_xy <-if(is.character(location)) whereis(location) else location
   delta_lat<-radius_to_latitude(radius)
   delta_long<-radius_to_longitude(radius, location$latitude)
   
@@ -30,7 +31,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   ## we don't know how to do this yet
   nearby_amenities <- amenities[is_nearby(amenities, road_distances, road_graph)]
   
-  pop_density<- get_population_density(location) ## NA if not available
+  pop_density<- get_population_density(location_xy) ## NA if not available
   
   rval<- list( location=location, bounding_box=bounding_box, sys.call(), amenities=nearby_amenities, 
                person_density=pop_density$persons, dwelling_density=pop_density$dwellings, 
