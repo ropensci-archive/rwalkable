@@ -26,6 +26,7 @@ get_roads_graph <- function(location){
     osmdata::osmdata_sf(quiet = TRUE) %>% osmdata::osm_poly2line()
 
   # Return
-  return(roads_gph$osm_lines)
+  dodgr::weight_streetnet(roads_gph$osm_lines,
+                          wt_profile = "foot")
 
 }

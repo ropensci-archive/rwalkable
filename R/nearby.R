@@ -22,7 +22,7 @@ nearby <- function(location, radius=1500, amenities=NULL){
   
   amenities <- get_amenities(location_bb, amenities)
   
-  road_graph<- get_road_graph(location_bb)
+  road_graph <- get_roads_graph(location_bb)
   
   nearby_amenities <- amenities[is_nearby(to=amenities, from=location_xy, road_graph, radius)]
   
