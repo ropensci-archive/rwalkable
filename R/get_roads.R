@@ -33,16 +33,29 @@ get_roads <- function(location, ...){
   the_data <- osmdata_sp(query)$osm_lines
 
   # Cut out those lines with no sidewalks
-  side_walk <- subset(
-    the_data,
-    sidewalk != "none" | is.na(sidewalk)
+  side_walk <- tryCatch(
+    subset(
+      the_data,
+      sidewalk != "none" | is.na(sidewalk)
+    ),
+    error = function(e) the_data
   )
 
   # Cut out those lines which are motorways / motorway links, which are by definition unwalkable
-  walkables <- subset(
-    side_walk,
-    !highway %in% c("motorway", "motorway_link")
+  walkables <- tryCatch(
+    subset(
+      side_walk,
+      !highway %in% c("motorway", "motorway_link")
+    ),
+    error = function(e) side_walk
   )
+
+  # Check output exists
+
+  exists <- nrow(walkables@data) > 0
+  if(!exists){
+    stop("Output has 0 features.")
+  }
 
   # Return this SpatialLinesDataFrame object
   return(walkables)
