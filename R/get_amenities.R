@@ -25,5 +25,13 @@ get_amenities <- function(location, amenities = NULL) {
     }
   }
   
-  osmdata_sf(query)$osm_points
+  points <- osmdata_sf(query)$osm_points
+  
+  out <- data.frame(osm_id = points$osm_id, 
+                    type = points$amenity, 
+                    do.call("rbind", points$geometry))
+  colnames(out)[3:4] <- c("x", "y")
+  
+  out
+  
 }
