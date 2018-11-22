@@ -15,7 +15,7 @@ If NULL will default to all amenity tags. For valid amenity tags use
 \code{osmdata::available_tags("amenity")}}
 }
 \value{
-an sf Simple Features Collection of points
+a \code{data.frame} passed to \code{nearby()}
 }
 \description{
 Retrieve amenities for a neighbourhood/location

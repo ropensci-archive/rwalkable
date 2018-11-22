@@ -8,7 +8,7 @@
 #' If NULL will default to all amenity tags. For valid amenity tags use
 #' `osmdata::available_tags("amenity")`
 #' 
-#' @return an sf Simple Features Collection of points
+#' @return a `data.frame` passed to `nearby()`
 #'         
 #' @importFrom osmdata opq add_osm_feature osmdata_sf
 get_amenities <- function(location, amenities = NULL) {
