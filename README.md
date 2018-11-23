@@ -19,7 +19,7 @@ The location can be specified as a geographic area that OpenStreetMap knows abou
 library(rwalkable)
 nearby("Paris, France")
 #> Within  800  m of Paris, France 
-#>    11.1 points of interest per hectare
+#>    7.6 points of interest per hectare
 #>    2.2 road branches per hectare
 nearby("Paris, Texas")
 #> Within  800  m of Paris, Texas 
@@ -32,6 +32,6 @@ More detail is better:
 ``` r
  nearby("3rd Arrondissement, Paris, France")
 #> Within  800  m of 3rd Arrondissement, Paris, France 
-#>    9.9 points of interest per hectare
+#>    7.1 points of interest per hectare
 #>    2.2 road branches per hectare
 ```
