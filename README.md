@@ -20,6 +20,13 @@ and a list of locations (‘amenities’) that someone has thought worth
 adding to the map. Most of the heavy lifting is done by the `dodgr`
 package.
 
+## Installation
+
+``` r
+#install.packages("devtools")
+devtools::install_github("sa-lee/rwalkable")
+```
+
 ## Example
 
 The location can be specified as a geographic area that OpenStreetMap
