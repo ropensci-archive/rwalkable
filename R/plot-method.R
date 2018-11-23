@@ -28,7 +28,7 @@ plot.nearby <- function(x, y, overlay_isochrone = TRUE, ...) {
     stop("Not valid for plot.nearby...")
   }
   
-  amenities <- na.omit(x$amenities)
+  amenities <- stats::na.omit(x$amenities)
 
   if (overlay_isochrone) {
     poly <- suppressWarnings(get_roads_isochrone(x)) 
