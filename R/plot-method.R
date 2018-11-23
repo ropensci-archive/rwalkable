@@ -31,23 +31,25 @@ plot.nearby <- function(x, y, overlay_isochrone = TRUE, ...) {
   amenities <- na.omit(x$amenities)
 
   if (overlay_isochrone) {
-    poly <- suppressWarnings(get_roads_isochrone(x, buffer_dist = 0.0001)) 
+    poly <- suppressWarnings(get_roads_isochrone(x)) 
     map <- leaflet(poly) %>%
       addPolygons(opacity = 0.3, group = "isochrone")
   } else {
     hpts <- grDevices::chull(amenities[, c("x", "y")])
-    map <-  leaflet()
+    map <-  leaflet() %>% 
       addPolygons(lng = amenities[hpts, "x"], 
                   lat = amenities[hpts, "y"],
                   opacity = 0.3,
                   group = "isochrone")
   }
+  
   map <- map %>% 
     addTiles() %>% 
     fitBounds(lng1 = x$bounding_box[1,1],
               lat1 = x$bounding_box[2,1],
               lng2 = x$bounding_box[1,2],
               lat2 = x$bounding_box[2,2]) %>% 
+    addCircleMarkers(lng = x$location_coords[2], lat = x$location_coords[1]) %>% 
     addCircles(lng = amenities[["x"]],
                lat = amenities[["y"]],
                group = amenities[["type"]],

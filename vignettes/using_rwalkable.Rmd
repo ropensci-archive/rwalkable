@@ -33,7 +33,8 @@ that are within some walkable distance.
 Let's look at points of interest nearby Paris, France and compare them
 to Paris, Texas, USA
 ```{r}
-paris <- nearby("Paris, France")
+library(rwalkable)
+paris <- nearby("3rd Arrondissement, Paris, France")
 paris
 
 the_other_paris <- nearby("Paris, Texas, USA")
@@ -49,13 +50,13 @@ of the location.
 We can modify this with the radius argument, which takes
 a walking distance in metres,
 
-```{r}
+```{r, eval = FALSE}
 nearby("Paris, France", radius = 2000)
 ```
 
 or we can estimate all points of interest for a given walking time in minutes
 
-```{r}
+```{r, eval = FALSE}
 nearby("Paris, France", radius = walk_time(15))
 ```
 
@@ -63,7 +64,7 @@ By default all amenities are to be points of interest, this can modified
 with the amenities argument. Valid amenities can be found on 
 [OpenStreetMap](https://wiki.openstreetmap.org/wiki/Key:amenity)
 
-```{r}
+```{r, eval = FALSE}
 nearby("Paris, France", amenities = "cafe")
 ```
 
@@ -73,11 +74,11 @@ side of the map to filter amenties that are not interesting out.
 
 Here's a walkable neighbourhood
 ```{r}
-plot(paris)
+plot(paris, overlay_isochrone = FALSE)
 ```
 
 And a not so walkable neighbourhood
 
 ```{r}
-plot(the_other_paris)
+plot(the_other_paris, overlay_isochrone = FALSE)
 ```
