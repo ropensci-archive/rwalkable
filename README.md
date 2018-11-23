@@ -43,3 +43,5 @@ More detail is better:
 #>    7.1 points of interest per hectare
 #>    2.2 road branches per hectare
 ```
+
+A working vignette: http://rpubs.com/a_pear_9/rwalkable_v
