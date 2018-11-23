@@ -7,11 +7,9 @@
 whereis(place, quietly=FALSE)
 }
 \arguments{
-\item{place}{a character vector of place names}
+\item{place}{name of the geographic place}
 
 \item{quietly}{if FALSE, throw an error on failure to find the place}
-
-\item{place}{name of the geographic place}
 }
 \description{
 Look up latitude and longitude for a geographical place name

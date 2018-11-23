@@ -14,7 +14,7 @@ Authors@R:
            family = "Pearse",
            role = c("aut", "cre"),
            email = "first.last@example.com")
-Description: Estimates walkability using data from OpenStreetMap and other free sources
+Description: Estimates walkability using data from OpenStreetMap and other free sources.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -24,6 +24,7 @@ Imports:
     osmdata,
     magrittr,
     dodgr,
+    sf,
     leaflet
 Suggests: 
     knitr,

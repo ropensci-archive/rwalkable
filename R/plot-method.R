@@ -22,7 +22,7 @@
 #' }
 #' 
 #' @import leaflet
-#' @export
+#' @export plot.nearby
 plot.nearby <- function(x, y, overlay_isochrone = TRUE, ...) {
   if (!missing(y)) {
     stop("Not valid for plot.nearby...")
