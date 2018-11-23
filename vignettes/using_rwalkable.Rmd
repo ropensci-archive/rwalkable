@@ -33,7 +33,7 @@ that are within some walkable distance.
 Let's look at points of interest nearby Paris, France and compare them
 to Paris, Texas, USA
 ```{r}
-devtools::load_all("../")
+library(rwalkable)
 paris <- nearby("3rd Arrondissement, Paris, France")
 paris
 
