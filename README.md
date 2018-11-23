@@ -44,4 +44,4 @@ More detail is better:
 #>    2.2 road branches per hectare
 ```
 
-A working vignette: http://rpubs.com/a_pear_9/rwalkable_v
+Check out the vignette for examples with interactive plots in `leaflet`!
