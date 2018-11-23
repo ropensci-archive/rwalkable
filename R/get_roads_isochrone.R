@@ -38,13 +38,13 @@ get_roads_isochrone <- function(nearby_obj, buffer_dist = 0.0002){
   road_net <- road_net[which(road_net$geom_num %in% geom_nums), ]
 
   # Coerce to class sf
-  road_sfc <<- dodgr::dodgr_to_sfc(road_net)$geoms
+  road_sfc <- dodgr::dodgr_to_sfc(road_net)$geoms
 
   # Buffer by fixed distance of 0.0002 arc-degrees
   road_buf <- tryCatch(sf::st_buffer(road_sfc, buffer_dist), error = function(e) stop("Cannot buffer"))
 
   # Dissolve
-  road_buf <- st_union(road_buf)
+  road_buf <- sf::st_union(road_buf)
 
   # Return
   return(road_buf)

@@ -4,12 +4,14 @@
 \alias{plot.nearby}
 \title{Produce a map of nearby amenities}
 \usage{
-\method{plot}{nearby}(x, y, ...)
+\method{plot}{nearby}(x, y, overlay_isochrone = TRUE, ...)
 }
 \arguments{
 \item{x}{An object of class \code{nearby}}
 
 \item{y}{Not used for \code{plot.nearby}}
+
+\item{overlay_isochrone}{Overlay an isochrone as polygons? Defaults to \code{TRUE}.}
 
 \item{...}{Additional arguments to plot, currently does not do anything}
 }
@@ -21,8 +23,10 @@ Produce a map of nearby amenities
 }
 \details{
 The plot method produces a map of nearby amenities, with
-a convex hull over the amenities' longitude and latitude. There is
-a dropdown menu on the top right, to filter by by an amenity type.
+a isochrone over the amenities' longitude and latitude with the road network.
+If \code{overlay_isochrone = FALSE}, then a convex hull over the amenties' longitude
+and latitude. There is a dropdown menu on the top right, to filter by by an
+amenity type.
 }
 \examples{
 \dontrun{
