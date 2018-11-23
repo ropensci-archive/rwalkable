@@ -53,7 +53,8 @@ nearby <- function(location, radius=800, amenities=NULL){
   
   connectivity <- get_graph_metrics(road_graph)
   
-  rval<- list( location=location, bounding_box=location_bb, call=sys.call(), 
+  rval<- list( location=location, location_coords=location_xy, 
+               bounding_box=location_bb, call=sys.call(), 
                amenities=nearby_amenities, radius=radius,
                connectivity=connectivity)
   class(rval)<-"nearby"
