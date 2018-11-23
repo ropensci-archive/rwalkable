@@ -13,7 +13,7 @@ Authors@R:
     person(given = "Alan",
            family = "Pearse",
            role = c("aut", "cre"),
-           email = "apearse9 at gmail dot com")
+           email = "first.last@example.com")
 Description: Estimates walkability using data from OpenStreetMap and other free sources.
 License: MIT + file LICENSE
 Encoding: UTF-8
