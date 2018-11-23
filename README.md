@@ -1,36 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+rwalkable
+=========
 
-# rwalkable
+The goal of rwalkable is to look up and summarise some information about the walkability of a neighbourhood. We look at two components of walkability:
 
-The goal of rwalkable is to look up and summarise some information about
-the walkability of a neighbourhood. We look at two components of
-walkability:
+-   how many places are there within walking distance that you might want to go to (per hectare)?
+-   is there a reasonably dense network of roads or paths to walk on (number of road segments connections minus number of intersections, per hectare)
 
-  - how many places are there within walking distance that you might
-    want to go to (per hectare)?
-  - is there a reasonably dense network of roads or paths to walk on
-    (number of road segments connections minus number of intersections,
-    per hectare)
+We use data from [OpenStreetMap](https://www.openstreetmap.org/copyright) for both components, via the `osmdata` package: it provides both a road network and a list of locations ('amenities') that someone has thought worth adding to the map. Most of the heavy lifting is done by the `dodgr` package.
 
-We use data from
-[OpenStreetMap](https://www.openstreetmap.org/copyright) for both
-components, via the `osmdata` package: it provides both a road network
-and a list of locations (‘amenities’) that someone has thought worth
-adding to the map. Most of the heavy lifting is done by the `dodgr`
-package.
-
-## Installation
+Installation
+------------
 
 ``` r
 #install.packages("devtools")
-devtools::install_github("sa-lee/rwalkable")
+devtools::install_github("ropenscilabs/rwalkable")
 ```
 
-## Example
+Example
+-------
 
-The location can be specified as a geographic area that OpenStreetMap
-knows about, or as a two-element vector of latitude and longitude
+The location can be specified as (the centre of) a geographic area that OpenStreetMap knows about, or as a two-element vector of latitude and longitude
 
 ``` r
 library(rwalkable)
